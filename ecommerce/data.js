@@ -132,6 +132,7 @@ function calculateDiscountedPrice(price, discount) {
 function populateSearching() {
     const searchInput = document.getElementById("searchBar");
     const resultsContainer = document.getElementById("searchResults");
+    const body = document.body;
 
     searchInput.addEventListener("keyup", (event) => {
         const searchTerm = event.target.value.toLowerCase();
@@ -165,9 +166,14 @@ function populateSearching() {
                     </div>`;
                 resultsContainer.innerHTML += resultItem;
             });
+
+           
+            body.classList.remove("hidden");
         } else {
-            // Display all portfolio items when no results found
-            populatePortfolioSection();
+            
+            body.classList.add("hidden");
+           
+            populateContentSections();
         }
     });
 }
@@ -190,7 +196,7 @@ function populateOfferSection() {
                     <div class="card-body">
                         <h5 class="card-title text text-danger">${item.title}</h5>
                         <p class="card-text">${item.description}</p>
-                        <h5 class="card-text">${item.price} Rs</h5>
+                        <h5 class="card-text"><del>${item.price} Rs </del></h5>
                         <p class="card-text">Discounted Price: ${discountedPrice.toFixed(2)} Rs</p>
                         <a href="${item.link}" class="btn btn-danger">Shop Now</a>
                     </div>
@@ -206,6 +212,9 @@ populatePortfolioSection();
 populateContentSections();
 populateSearching();
 populateOfferSection();
+
+
+
 
 // random
 
